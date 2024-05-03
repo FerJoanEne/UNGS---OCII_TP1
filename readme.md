@@ -1,9 +1,9 @@
+#Ejemplos
+
 - Ejecutar programa de ensamblador
 --nasm -f elf64 nombre-de-mi-archivo.asm 
-crea el archivo nombre-de-mi-archivo.o
 --ld -o nombre-final nombre-final.o
-crea el archivo ejecutable hola_mundo
-./nombre-final
+--./nombre-final
 
 
 - Ejecutar programa c

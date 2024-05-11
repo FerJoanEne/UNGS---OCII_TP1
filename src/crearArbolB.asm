@@ -1,4 +1,4 @@
-%include "io.inc"
+;%include 'io.inc'
 extern free
 extern malloc
 
@@ -16,14 +16,13 @@ global CMAIN
     
 CMAIN:
     mov ebp, esp; for correct debugging
-    ;ejercicio 1
    
     ;Reservar memoria para la estuctura de arbol
     push ebp
     mov ebp, esp
     push SizeofNodo
     call malloc
-    ;sub esp, 12                   ;Reservar espacio para tres punteros
+    sub esp, 12                   ;Reservar espacio para tres punteros
     
     mov ebx, [ebp + 8]            ;Obtener el puntero al nodo izquierdo
     mov ecx, [ebp + 12]           ;Obtener el puntero al nodo derecho
@@ -35,8 +34,8 @@ CMAIN:
     
     mov esp, ebp                  ;Retornar el puntero al arbol
     pop ebp
-    call free
-    ret
     
-    ;xor eax, eax
-    ;ret
+    xor eax, eax
+    call free
+
+    ret

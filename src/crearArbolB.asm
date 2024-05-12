@@ -1,41 +1,52 @@
-;%include 'io.inc'
+;include 'io.inc'
+global crearArbolB_conHijos
+global crearArbolB
+
 extern free
 extern malloc
 
 section .data
-struc arbol
-    izq resd 1
-    der resd 1
-    valor resd 1
-endstruc
 
-SizeofNodo equ 12    
+SizeofNodo equ 12
 
 section .text
-global CMAIN
-    
-CMAIN:
-    mov ebp, esp; for correct debugging
-   
-    ;Reservar memoria para la estuctura de arbol
+
+crearArbolB_conHijos:
     push ebp
     mov ebp, esp
     push SizeofNodo
     call malloc
-    sub esp, 12                   ;Reservar espacio para tres punteros
-    
-    mov ebx, [ebp + 8]            ;Obtener el puntero al nodo izquierdo
-    mov ecx, [ebp + 12]           ;Obtener el puntero al nodo derecho
-    mov edx, [ebp + 16]           ;Obtener el valor del nodo
-    
-    mov [eax], ebx                ;Asignar el puntero al nodo izquierdo
-    mov [eax + 4], ecx            ;Asignar el puntero al nodo derecho
-    mov [eax + 8], edx            ;Asignar el valor al nodo
-    
-    mov esp, ebp                  ;Retornar el puntero al arbol
-    pop ebp
-    
-    xor eax, eax
-    call free
 
+    ; Obtener valores de los registros
+    mov ebx, [ebp + 8] ; Valor del nodo
+    mov ecx, [ebp + 12] ; Puntero al nodo izquierdo
+    mov edx, [ebp + 16] ; Puntero al nodo derecho
+
+    ; Asignar valores a los campos del nodo
+    mov [eax], ebx ; Asignar valor del nodo
+    mov [eax + 4], ecx ; Asignar puntero al nodo izquierdo
+    mov [eax + 8], edx ; Asignar puntero al nodo derecho
+
+    jmp finalizar
+
+
+crearArbolB:
+    push ebp
+    mov ebp, esp
+    push SizeofNodo
+    call malloc
+
+    mov ebx, [ebp + 8] ; Valor del nodo
+    
+    mov [eax], ebx
+    mov ebx, 0
+    mov [eax + 4], ebx ;seteo 0 puntero nodo izquierdo
+    mov [eax + 8], ebx ;seteo 0 puntero nodo derecho
+
+    jmp finalizar
+
+
+finalizar:
+    mov esp, ebp
+    pop ebp
     ret

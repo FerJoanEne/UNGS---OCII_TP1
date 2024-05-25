@@ -6,5 +6,5 @@ echo '2º Paso - linkear .asm y .c'
 gcc -m32 -o ejercicio1 ejercicio1.o main.c
 chmod 777 ejercicio1
 
-echo '3º Paso - ejecutar'
+echo '3º Paso - ejecutar ./ejercicio1'
 ./ejercicio1

@@ -1,4 +1,4 @@
-//MENSAGES
+//MESSAGES
 #define WELCOME "Bienvenido/a, soy el asistente que lo guiará en el programa"
 #define INPUT_QUESTION "Ingrese su pregunta. Para salir ingrese $"
 #define ERROR_NOT_VALID_QUESTION "Lo siento, mis respuestas son limitadas."

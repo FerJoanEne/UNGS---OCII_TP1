@@ -4,6 +4,7 @@
 
 #include "const.h"
 
+extern int recibir_Operacion(int Operando1, char Operador, int Operando2);
 
 void printMessage(const char* message){
     printf("%s\n", message);
@@ -22,16 +23,20 @@ int calcularOperacion(int Operando1, char Operador, int Operando2){
     int resultado = 0;
     switch (Operador) {
         case '*':
-            resultado = Operando1 * Operando2;
+            resultado = recibir_Operacion(Operando1,Operador, Operando2);
+            //resultado = Operando1 * Operando2;
             break;
         case '/':
-            resultado = Operando1 / Operando2;
+            resultado = recibir_Operacion(Operando1,Operador, Operando2);
+            //resultado = Operando1 / Operando2;
             break;
         case '-':
-            resultado = Operando1 - Operando2;
+            resultado = recibir_Operacion(Operando1,Operador, Operando2);
+            //resultado = Operando1 - Operando2;
             break;
         case '+':
-            resultado = Operando1 + Operando2;
+            resultado = recibir_Operacion(Operando1,Operador, Operando2);
+            //resultado = Operando1 + Operando2;
             break;
         default:
             printMessage(NOT_VALID_OPERATOR);

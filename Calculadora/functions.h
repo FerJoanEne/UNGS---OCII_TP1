@@ -14,15 +14,13 @@ void printResult(const char* message, int result){
     printf("%s %d\n", message, result);
 }
 
-void printSeparator(){
-    printf("\n%s \n", SEPARATOR);
+void printSeparator(const char* separator){
+    printf("\n%s \n", separator);
 }
 
-int calcularOperacion(int Operando1, char Operador, int Operando2){
-    int resultado = 0;
-    resultado = recibir_Operacion(Operando1,Operador, Operando2);
+void calcularOperacion(int Operando1, char Operador, int Operando2){
+    int resultado = recibir_Operacion(Operando1,Operador, Operando2);
     printResult(RESULT, resultado);
-    return resultado;
 }
 
 int validateOperator(char Operador){
@@ -45,6 +43,7 @@ int validateQuestion(const char* question) {
     //primer control para el operando 1
     char *token = strtok(questionCopy, " ");
     if (token == NULL) {
+        printMessage(NOT_VALID_VALUE);
         free(questionCopy);
         return 0;
     }
@@ -64,6 +63,7 @@ int validateQuestion(const char* question) {
     //tercer control para el operando 2
     token = strtok(NULL, " ");
     if (token == NULL) {
+        printMessage(NOT_VALID_VALUE);
         free(questionCopy);
         return 0;
     }
@@ -85,7 +85,7 @@ void processOperation(const char* question){
 }
 
 void leerPregunta() {
-    printSeparator();
+    printSeparator(SEPARATOR);
 
     printMessage(INPUT_QUESTION);
 

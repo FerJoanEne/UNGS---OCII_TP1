@@ -20,7 +20,7 @@ void printSeparator(const char* separator){
 
 int calcularOperacion(int Operando1, char Operador, int Operando2){
     int resultado = recibir_Operacion(Operando1, Operador, Operando2);
-    printResult("El resultado de la operación es:", resultado);
+    printResult(RESULT, resultado);
     return resultado;
 }
 
@@ -68,6 +68,10 @@ int validateQuestion(const char* question) {
         free(questionCopy);
         return 0;
     }
+    char operando2 = *token;
+    if(operador == '/' && operando2 == '0'){
+        return -1;
+    }
     free(questionCopy);
     return 1;
 }
@@ -100,7 +104,11 @@ void leerPregunta() {
     int isValid = validateQuestion(question);
     if(isValid == 0){
         printMessage(ERROR_NOT_VALID_QUESTION);
-    }else{
+    }
+    if(isValid == -1){
+        printMessage(ERROR_DIVIDE_BY_ZERO);
+    }
+    if(isValid == 1){
         processOperation(question);
     }
 

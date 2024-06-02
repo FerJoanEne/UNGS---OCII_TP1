@@ -8,6 +8,8 @@ int main(){
     while (active == 1)
     {
         if(active == 1){
+            printSeparator(SEPARATOR);
+            printMessage(INPUT_QUESTION);
             leerPregunta();
         }
     }

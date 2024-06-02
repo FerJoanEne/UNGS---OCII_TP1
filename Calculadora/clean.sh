@@ -1,2 +1,2 @@
-rm -rf runBot main operations.o bot
+rm -rf runBot operations.o
 clear

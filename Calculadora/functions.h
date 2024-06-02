@@ -18,9 +18,10 @@ void printSeparator(const char* separator){
     printf("\n%s \n", separator);
 }
 
-void calcularOperacion(int Operando1, char Operador, int Operando2){
-    int resultado = recibir_Operacion(Operando1,Operador, Operando2);
-    printResult(RESULT, resultado);
+int calcularOperacion(int Operando1, char Operador, int Operando2){
+    int resultado = recibir_Operacion(Operando1, Operador, Operando2);
+    printResult("El resultado de la operación es:", resultado);
+    return resultado;
 }
 
 int validateOperator(char Operador){
@@ -56,8 +57,8 @@ int validateQuestion(const char* question) {
     char operador = *token;
     int isValidOperator = validateOperator(operador);
     if(isValidOperator == 0){
-        free(questionCopy);
         printMessage(NOT_VALID_OPERATOR);
+        free(questionCopy);
         return 0;
     }
     //tercer control para el operando 2
@@ -80,19 +81,14 @@ void processOperation(const char* question){
     char operador = *token;
     token = strtok(NULL, " ");
     int operando2 = atoi(token);
-    calcularOperacion(operando1, operador, operando2);
+    int resultado = calcularOperacion(operando1, operador, operando2);
     free(questionCopy);
 }
 
 void leerPregunta() {
-    printSeparator(SEPARATOR);
-
-    printMessage(INPUT_QUESTION);
-
     char question [LIMIT_CHARACTERS];
-
     fgets(question, LIMIT_CHARACTERS, stdin);
-    
+
     // Eliminar el carácter de nueva línea al final
     question[strcspn(question, "\n")] = '\0';
 
